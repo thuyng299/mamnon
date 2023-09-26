@@ -11,7 +11,7 @@ import org.nonit.mamnon.service.model.InvoiceDTO;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-09-26T15:30:56+0700",
+    date = "2023-09-27T00:11:18+0700",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 11.0.18 (Oracle Corporation)"
 )
 @ApplicationScoped
@@ -56,12 +56,12 @@ public class InvoiceMapperImpl implements InvoiceMapper {
         invoiceDTO.paidDate( invoice.getPaidDate() );
         invoiceDTO.createdTime( invoice.getCreatedTime() );
         invoiceDTO.schoolId( invoice.getSchoolId() );
-        invoiceDTO.stt( invoice.getStt() );
-        invoiceDTO.note( invoice.getNote() );
         List<Tuition> list = invoice.getTuitions();
         if ( list != null ) {
             invoiceDTO.tuitions( new ArrayList<Tuition>( list ) );
         }
+        invoiceDTO.stt( invoice.getStt() );
+        invoiceDTO.note( invoice.getNote() );
 
         return invoiceDTO.build();
     }

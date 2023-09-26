@@ -4,13 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
 import javax.enterprise.context.ApplicationScoped;
-import org.nonit.mamnon.entity.phieuthu.Invoice;
 import org.nonit.mamnon.entity.phieuthu.Tuition;
 import org.nonit.mamnon.service.model.TuitionDTO;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-09-26T15:30:56+0700",
+    date = "2023-09-27T00:11:17+0700",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 11.0.18 (Oracle Corporation)"
 )
 @ApplicationScoped
@@ -38,7 +37,6 @@ public class TuitionMapperImpl implements TuitionMapper {
 
         TuitionDTO.TuitionDTOBuilder tuitionDTO = TuitionDTO.builder();
 
-        tuitionDTO.invoiceId( tuitionInvoiceId( tuition ) );
         tuitionDTO.uuid( tuition.getUuid() );
         tuitionDTO.name( tuition.getName() );
         tuitionDTO.amount( tuition.getAmount() );
@@ -53,20 +51,5 @@ public class TuitionMapperImpl implements TuitionMapper {
         tuitionDTO.danhMucThuId( tuition.getDanhMucThuId() );
 
         return tuitionDTO.build();
-    }
-
-    private Long tuitionInvoiceId(Tuition tuition) {
-        if ( tuition == null ) {
-            return null;
-        }
-        Invoice invoice = tuition.getInvoice();
-        if ( invoice == null ) {
-            return null;
-        }
-        Long id = invoice.getId();
-        if ( id == null ) {
-            return null;
-        }
-        return id;
     }
 }

@@ -10,6 +10,6 @@ import org.nonit.mamnon.service.model.TuitionDTO;
 public interface TuitionMapper extends BaseMapper<Tuition, TuitionDTO> {
 
     @Override
-    @Mapping(target = "invoiceId", source = "invoice.id")
+//    @Mapping(target = "invoiceId", source = "invoice.id")
     TuitionDTO toDTO(Tuition tuition);
 }

@@ -9,7 +9,7 @@ import org.nonit.mamnon.service.model.DanhMucChiMamNonDTO;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-09-26T15:30:56+0700",
+    date = "2023-09-27T00:11:18+0700",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 11.0.18 (Oracle Corporation)"
 )
 @ApplicationScoped

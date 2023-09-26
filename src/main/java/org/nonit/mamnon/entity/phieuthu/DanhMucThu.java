@@ -50,7 +50,7 @@ public class DanhMucThu {
 
 //	@Builder.Default
 	@Enumerated(EnumType.STRING)
-	private CalculationType calculationType = CalculationType.MONTHLY;
+	private CalculationType calculationType;
 
 	private Long parentId;
 

@@ -18,6 +18,7 @@ org\nonit\mamnon\entity\phieuthu\Tuition$TuitionBuilder.class
 org\nonit\mamnon\rest\ClazzRest.class
 org\nonit\mamnon\entity\mamnon\Student$StudentBuilder.class
 org\nonit\mamnon\service\model\CongDoanDTO.class
+org\nonit\mamnon\service\model\InvoiceDetailDTO.class
 org\nonit\mamnon\service\model\DanhMucChiMamNonDTO$DanhMucChiMamNonDTOBuilder.class
 org\nonit\mamnon\entity\thuchimamnon\DanhMucThuMamNon.class
 org\nonit\mamnon\entity\congdoan\CongDoan.class
@@ -25,6 +26,7 @@ org\nonit\mamnon\service\TuitionService.class
 org\nonit\mamnon\mapper\TuitionMapperImpl.class
 org\nonit\mamnon\dao\InvoiceDAO.class
 org\nonit\mamnon\config\RestConfiguration.class
+org\nonit\mamnon\service\DanhMucThuService.class
 org\nonit\mamnon\entity\thuchimamnon\ChiMamNon.class
 org\nonit\mamnon\entity\noitru\DanhMucThuNoiTru$DanhMucThuNoiTruBuilder.class
 org\nonit\mamnon\entity\phieuthu\DangKyMonTuChon.class
@@ -42,6 +44,7 @@ org\nonit\mamnon\entity\congdoan\CongDoanResource.class
 org\nonit\mamnon\mapper\TuitionMapper.class
 org\nonit\mamnon\service\model\ClassAndStudentList.class
 org\nonit\mamnon\entity\mamnon\OffOneMonth$OffOneMonthBuilder.class
+org\nonit\mamnon\dao\DanhMucThuDAO.class
 org\nonit\mamnon\entity\phieuthu\DangKyMonTuChon$DangKyMonTuChonBuilder.class
 org\nonit\mamnon\service\InvoiceService.class
 org\nonit\mamnon\entity\phieuthu\Tuition.class
@@ -62,19 +65,23 @@ org\nonit\mamnon\service\model\DanhMucChiMamNonDTO.class
 org\nonit\mamnon\entity\congdoan\ResourceType.class
 org\nonit\mamnon\entity\mamnon\OffOneMonth.class
 org\nonit\mamnon\entity\thuchimamnon\ChiMamNon$ChiMamNonBuilder.class
+org\nonit\mamnon\dao\StudentDAO.class
 org\nonit\mamnon\entity\congdoan\Region.class
 org\nonit\mamnon\entity\noitru\DanhMucThuNoiTru.class
 org\nonit\mamnon\service\model\InvoiceDTO$InvoiceDTOBuilder.class
+org\nonit\mamnon\service\model\InvoiceDetailDTO$InvoiceDetailDTOBuilder.class
 org\nonit\mamnon\service\model\InvoiceDetailCreate$InvoiceDetailCreateBuilder.class
 org\nonit\mamnon\rest\TuitionRest.class
 org\nonit\mamnon\entity\mamnon\Grade.class
 org\nonit\mamnon\entity\noitru\DanhMucChiNoiTru$DanhMucChiNoiTruBuilder.class
 org\nonit\mamnon\service\model\InvoiceDetailOfStudent$InvoiceDetailOfStudentBuilder.class
+org\nonit\mamnon\service\StudentService.class
 org\nonit\mamnon\entity\thuchimamnon\DanhMucThuMamNon$DanhMucThuMamNonBuilder.class
 org\nonit\mamnon\entity\noitru\ChiNoiTru.class
 org\nonit\mamnon\mapper\InvoiceMapperImpl.class
 org\nonit\mamnon\entity\mamnon\Absence$AbsenceBuilder.class
 org\nonit\mamnon\service\model\TuitionDTO.class
+org\nonit\mamnon\rest\DanhMucThuRest.class
 org\nonit\mamnon\entity\noitru\DanhMucChiNoiTru.class
 org\nonit\mamnon\mapper\CongDoanMapper.class
 org\nonit\mamnon\rest\DanhMucChiMamNonRest.class

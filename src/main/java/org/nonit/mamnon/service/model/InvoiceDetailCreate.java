@@ -39,7 +39,7 @@ public class InvoiceDetailCreate {
 
     private String note;
 
-    private List<Tuition> tuitionList;
+    private List<TuitionDTO> tuitionList;
 
     private Integer studentId;
 

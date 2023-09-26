@@ -28,6 +28,7 @@ public class TuitionService {
     @Inject
     private TuitionMapper tuitionMapper;
 
+
     public List<TuitionDTO> getInvoiceDetailListByInvoice(Long invoiceId) {
         List<Tuition> tuitionList = tuitionDAO.getInvoiceDetailListByInvoice(invoiceId);
         return tuitionMapper.toDTOList(tuitionList);
@@ -55,29 +56,6 @@ public class TuitionService {
                 .invoiceId(monthlyInvoiceOfStudent.getId())
                 .totalAmount((double)monthlyInvoiceOfStudent.getTotalAmount())
                 .invoiceDetailList(invoiceDetailList)
-                .build();
-    }
-
-    public InvoiceDTO createInvoiceAndInvoiceDetail(InvoiceDetailCreate invoiceDetailCreate){
-
-        List<Tuition> tuitionList = new ArrayList<>();
-
-
-
-
-
-
-        Invoice invoice = Invoice.builder()
-                .month(invoiceDetailCreate.getMonth())
-                .year(invoiceDetailCreate.getYear())
-                .totalAmount()
-                .paymentAmount(invoiceDetailCreate.getTotalAmount())
-                .daysToClassCurrentMonth()
-                .createdTime(LocalDateTime.now())
-                .schoolId()
-                .note(invoiceDetailCreate.getNote())
-                .student(invoiceDetailCreate.getStudentId())
-                .tuitions()
                 .build();
     }
 
