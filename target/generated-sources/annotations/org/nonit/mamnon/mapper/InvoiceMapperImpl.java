@@ -6,12 +6,11 @@ import javax.annotation.processing.Generated;
 import javax.enterprise.context.ApplicationScoped;
 import org.nonit.mamnon.entity.mamnon.Student;
 import org.nonit.mamnon.entity.phieuthu.Invoice;
-import org.nonit.mamnon.entity.phieuthu.Tuition;
 import org.nonit.mamnon.service.model.InvoiceDTO;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-09-27T00:11:18+0700",
+    date = "2023-09-27T14:06:04+0700",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 11.0.18 (Oracle Corporation)"
 )
 @ApplicationScoped
@@ -56,10 +55,6 @@ public class InvoiceMapperImpl implements InvoiceMapper {
         invoiceDTO.paidDate( invoice.getPaidDate() );
         invoiceDTO.createdTime( invoice.getCreatedTime() );
         invoiceDTO.schoolId( invoice.getSchoolId() );
-        List<Tuition> list = invoice.getTuitions();
-        if ( list != null ) {
-            invoiceDTO.tuitions( new ArrayList<Tuition>( list ) );
-        }
         invoiceDTO.stt( invoice.getStt() );
         invoiceDTO.note( invoice.getNote() );
 

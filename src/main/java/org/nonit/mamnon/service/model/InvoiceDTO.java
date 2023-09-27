@@ -53,8 +53,6 @@ public class InvoiceDTO {
 
     private Integer schoolId;
 
-    private List<Tuition> tuitions;
-
     private Integer stt;
 
     private String note;

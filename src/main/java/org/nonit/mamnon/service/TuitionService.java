@@ -29,9 +29,8 @@ public class TuitionService {
     private TuitionMapper tuitionMapper;
 
 
-    public List<TuitionDTO> getInvoiceDetailListByInvoice(Long invoiceId) {
-        List<Tuition> tuitionList = tuitionDAO.getInvoiceDetailListByInvoice(invoiceId);
-        return tuitionMapper.toDTOList(tuitionList);
+    public List<Tuition> getInvoiceDetailListByInvoice(Long invoiceId) {
+        return tuitionDAO.getInvoiceDetailListByInvoice(invoiceId);
 
     }
 

@@ -5,13 +5,12 @@ import org.nonit.mamnon.dao.InvoiceDAO;
 import org.nonit.mamnon.dao.StudentDAO;
 import org.nonit.mamnon.entity.congdoan.CongDoan;
 import org.nonit.mamnon.entity.mamnon.Student;
+import org.nonit.mamnon.entity.phieuthu.CalculationType;
 import org.nonit.mamnon.entity.phieuthu.DanhMucThu;
 import org.nonit.mamnon.entity.phieuthu.Invoice;
 import org.nonit.mamnon.entity.phieuthu.Tuition;
 import org.nonit.mamnon.mapper.InvoiceMapper;
-import org.nonit.mamnon.service.model.InvoiceDTO;
-import org.nonit.mamnon.service.model.InvoiceDetailCreate;
-import org.nonit.mamnon.service.model.TuitionDTO;
+import org.nonit.mamnon.service.model.*;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -40,57 +39,56 @@ public class InvoiceService {
         Invoice invoice = invoiceDAO.getInvoiceListOfStudent(studentId, month, year);
         return invoiceMapper.toDTO(invoice);
     }
-//
-//    public InvoiceDTO createInvoiceAndInvoiceDetail(InvoiceDetailCreate invoiceDetailCreate){
-//
-//        Student student = studentDAO.getById(invoiceDetailCreate.getStudentId()).orElseThrow(RuntimeException::new);
-//
-//        Integer schoolId = studentDAO.getCongDoanByStudentId(invoiceDetailCreate.getStudentId());
-//
-//                Invoice invoice = Invoice.builder()
-//                .month(invoiceDetailCreate.getMonth())
-//                .year(invoiceDetailCreate.getYear())
-//                .totalAmount()
-//                .paymentAmount(invoiceDetailCreate.getTotalAmount())
+
+    public InvoiceDTO createInvoiceAndInvoiceDetail(InvoiceDetailCreate invoiceDetailCreate){
+
+        Student student = studentDAO.getById(invoiceDetailCreate.getStudentId()).orElseThrow(RuntimeException::new);
+
+        Integer gradeId = studentDAO.getStudentClassInfo(invoiceDetailCreate.getStudentId()).getGradeId();
+
+        Integer schoolId = studentDAO.getCongDoanByStudentId(invoiceDetailCreate.getStudentId());
+
+                Invoice invoice = Invoice.builder()
+                .month(invoiceDetailCreate.getMonth())
+                .year(invoiceDetailCreate.getYear())
+                .totalAmount(0)
+                .paymentAmount(invoiceDetailCreate.getTotalAmount())
 //                .daysToClassCurrentMonth()
-//                .createdTime(LocalDateTime.now())
-//                .schoolId(schoolId)
-//                .note(invoiceDetailCreate.getNote())
-//                .student(student)
-//                .build();
-//
-//        Map<CongDoan, List<DanhMucThu>> danhMucThuMapByCongDoan = danhMucThuDAO.getAllDanhMucThuAndDuThu().stream()
-//                .filter(DanhMucThu::isActive)
-//                .filter(d -> d.getCongdoan().getId().equals(schoolId))
-//                .collect(Collectors.groupingBy(DanhMucThu::getCongdoan));
-//
-//        List<Tuition> tuitionList = new ArrayList<>();
-//
-//        for (TuitionDTO t: invoiceDetailCreate.getTuitionList()){
-//            List<DanhMucThu> danhMucThuList = danhMucThuMapByCongDoan.entrySet()
-//                    .stream()
-//                    .flatMap(entry -> entry.getValue().stream()
-//                            .map(danhMucThu -> {
-//                                Tuition tuition = new Tuition();
-//
-//                                tuition.setInvoice(invoice);
-//                                tuition.setName(danhMucThu.getName());
-//                                tuition.setAmount();
-//                                tuition.setDailyAmount();
-//                                tuition.setDuthuId();
-//                                tuition.setIsMandantory();
-//                                tuition.setCalculationType();
-//                                tuition.setIsAbsentCount();
-//                                tuition.setReferencedTuition();
-//                                tuition.setDescription(t.getDescription().trim());
-//                            })
-//                    )
-//                    .collect(Collectors.toList());
-//        }
-//
-//
-//
-//
-//
-//    }
+                .createdTime(LocalDateTime.now())
+                .schoolId(schoolId)
+                .note(invoiceDetailCreate.getNote())
+                .student(student)
+                .build();
+
+        List<Tuition> tuitionList = new ArrayList<>();
+
+        List<DanhMucThuAndDuThu> danhMucThuByStudent = danhMucThuDAO.getDanhMucThuAndDuThuOfStudent(invoiceDetailCreate.getStudentId(), gradeId);
+
+        for (DanhMucThuAndDuThu danhMucThuAndDuThu : danhMucThuByStudent) {
+
+            if (danhMucThuAndDuThu.getCalculationType() == CalculationType.DAILY){
+
+            }
+            Tuition tuition = Tuition.builder()
+                    .invoice(invoice)
+                    .name(danhMucThuAndDuThu.getName())
+                    .amount(danhMucThuAndDuThu.getAmount())
+                    .dailyAmount(danhMucThuAndDuThu.getCalculationType() == CalculationType.DAILY ? danhMucThuAndDuThu.getAmount() : null)
+//                    .description()
+                    .duthuId(danhMucThuAndDuThu.getDuthuId())
+                    .isMandantory(danhMucThuAndDuThu.getIsMandantory())
+                    .calculationType(danhMucThuAndDuThu.getCalculationType())
+                    .isAbsentCount(danhMucThuAndDuThu.getIsAbsentCount())
+                    .danhMucThuId(danhMucThuAndDuThu.getDanhmucthuId())
+//                    .referencedTuition()
+                    .build();
+
+            tuitionList.add(tuition);
+
+            invoice.setTotalAmount(tuition.getAmount());
+        }
+
+
+
+    }
 }

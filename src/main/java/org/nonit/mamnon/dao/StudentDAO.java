@@ -2,6 +2,7 @@ package org.nonit.mamnon.dao;
 
 import org.nonit.mamnon.entity.congdoan.CongDoan;
 import org.nonit.mamnon.entity.mamnon.Student;
+import org.nonit.mamnon.service.model.ClassAndGradeOfStudent;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -30,5 +31,13 @@ public class StudentDAO {
                 "AND s.id = :studentId")
                 .setParameter("studentId", studentId)
                 .getFirstResult();
+    }
+
+    public ClassAndGradeOfStudent getStudentClassInfo(Integer studentId){
+        return em.createQuery("SELECT NEW org.nonit.mamnon.service.model.ClassAndGradeOfStudent(s.id, s.firstName, s.lastName, c.id, g.id, cd.id) " +
+                "FROM Student s, Clazz c, Grade g, CongDoan cd " +
+                "WHERE s.clazz.id = c.id AND c.grade.id = g.id AND g.congdoan.id = cd.id AND s.id = :studentId", ClassAndGradeOfStudent.class)
+                .setParameter("studentId", studentId)
+                .getSingleResult();
     }
 }
